@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <app-post-form (onPosAdd)="pushPosts($event)"></app-post-form>
+  <hr>
+  <app-post *ngFor="let post of posts;let idx = index" [post]="post" >
+    <button (click)="remove(idx)" class="btn btn-danger">Remove</button>
+    <div #info>
+    <small *ngIf="post.text.length > 10 ; else short">Post big</small>
+    <ng-template #short>
+      <small>Post short</small>
+    </ng-template>
+    </div>
+  </app-post>
+</div>
+
+
+
