@@ -7,11 +7,10 @@ import {Post} from '../shared/interfaces/interfaces';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  @ContentChild('info', {static: true}) info: ElementRef;
   @Input() post: Post;
   constructor() { }
   ngOnInit() {
-    console.log(this.info.nativeElement);
+
   }
 
 }

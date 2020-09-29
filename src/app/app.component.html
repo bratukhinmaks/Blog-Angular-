@@ -1,17 +1,66 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
   <app-post-form (onPosAdd)="pushPosts($event)"></app-post-form>
+  <button>Add new </button>
   <hr>
-  <app-post *ngFor="let post of posts;let idx = index" [post]="post" >
+  <label for="nameSearch">
+    Search By
+  </label>
+  <select (change)="changeFilter($event)">
+    <option value="title">Title</option>
+    <option value="mail">Mail</option>
+    <option value="text">Text</option>
+
+  </select>
+  <input id="nameSearch" [(ngModel)]="postName">
+  <app-post *ngFor="let post of posts | filter:postName:filterField;let idx = index" [post]="post" >
     <button (click)="remove(idx)" class="btn btn-danger">Remove</button>
-    <div #info>
-    <small *ngIf="post.text.length > 10 ; else short">Post big</small>
-    <ng-template #short>
-      <small>Post short</small>
-    </ng-template>
-    </div>
   </app-post>
 </div>
+
+<hr>
+<button (click)="myServ.increase()" class="btn btn-success mr-4">Increase</button>
+<button (click)="myServ.decrease()" class="btn btn-danger">Decrease</button>
+<p>{{myServ.counter}}</p>
+
+<hr>
+<div class="container">
+  <h1>Angular Models</h1>
+  <app-onoff [(ngModel)]="appState"></app-onoff>
+  <p>{{appState}}</p>
+</div>
+<hr>
+
+<div class="container">
+  <h1>Angular</h1>
+  <div class="card">
+  <select #select (change)="paginationChange()">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+    <option value="30">30</option>
+  </select>
+    <div class="form-control">
+      <input type="text" [(ngModel)]="todotitle">
+      <button class="btn btn-success" (click)="addPost()">Add</button>
+      <button class="btn btn-danger" (click)="fetchTodos()">Upload</button>
+    </div>
+  </div>
+  <hr>
+  <div class="card" *ngFor="let product of posters">
+
+    <p>
+      <span>{{product.title |titlecase}}</span>
+      <span>
+        <button class="btn btn-danger" (click)="removeTodo(product.id)">Delete</button>
+        <button class="btn btn-success" [disabled]="product.completed">End</button>
+      </span>
+    </p>
+  </div>
+</div>
+
+
 
 
 

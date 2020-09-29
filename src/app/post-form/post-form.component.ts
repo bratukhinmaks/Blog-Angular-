@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup,  Validators} from '@angular/forms';
 import {Post} from '../shared/interfaces/interfaces';
+import {ServicesService} from '../shared/services/services.service';
 
 @Component({
   selector: 'app-post-form',
@@ -11,7 +12,7 @@ export class PostFormComponent implements OnInit {
   @Output() onPosAdd = new EventEmitter<Post>();
   form: FormGroup;
   post: Post;
-  constructor() { }
+  constructor(public myserv: ServicesService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
