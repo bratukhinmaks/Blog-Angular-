@@ -1,35 +1,39 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import {BrowserModule} from '@angular/platform-browser'
+import {NgModule} from '@angular/core'
+import {AppComponent} from './app.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { PostFormComponent } from './post-form/post-form.component';
-import { PostComponent } from './post/post.component';
-import { FilterPipe } from './shared/pipes/filter.pipe';
-import { OnoffComponent } from './onoff/onoff.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {InterIntersaptor} from './inter.intersaptor';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import {MainLayoutComponent} from './shared/components/main-layout/main-layout.component';
+import {HomePageComponent} from './pages/home-page/home-page.component';
+import {PostPageComponent} from './pages/post-page/post-page.component';
+import {RoutingModule} from './routing.module';
+import {PostComponent} from './shared/components/post/post.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostFormComponent,
-    PostComponent,
-    FilterPipe,
-    OnoffComponent,
+    MainLayoutComponent,
+    HomePageComponent,
+    PostPageComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
+    RoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: InterIntersaptor,
-    multi: true
-  }],
+  providers: [],
+  entryComponents: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build ",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -18,8 +18,11 @@
     "@angular/forms": "~8.1.2",
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
+    "@angular/pwa": "^0.1001.4",
     "@angular/router": "~8.1.2",
+    "@angular/service-worker": "~8.1.2",
     "bootstrap": "^4.5.2",
+    "ng-animate": "^0.3.4",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

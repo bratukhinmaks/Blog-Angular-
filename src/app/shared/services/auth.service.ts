@@ -1,31 +1,22 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
+interface User {
+  email: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
+export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  getAll() {
+  login(user: User) {
 
   }
 
-  getById() {
-
-  }
-
-  changePost() {
-
-  }
-
-  addPost() {
-
-  }
-
-  deletePost() {
-
-  }
+  setToken() {}
 
 }
