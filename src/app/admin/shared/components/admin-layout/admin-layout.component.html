@@ -3,6 +3,8 @@
     <a routerLink="/">Angular Blog</a>
   </h1>
 
+  <app-alert></app-alert>
+
   <ul *ngIf="auth.isAuth()">
     <li routerLinkActive="active">
       <a [routerLink]="['/admin','dashboard']">

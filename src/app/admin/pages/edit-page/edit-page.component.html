@@ -1,1 +1,28 @@
-<p>edit-page works!</p>
+<div class="container">
+  <h1>Create POst</h1>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group" [ngClass]="{invalid : form.get('title').invalid && form.get('title').touched}">
+      <label for="title">Title</label>
+      <input id="title" type="text" formControlName="title">
+      <div class="validation" *ngIf="form.get('title').invalid && form.get('title').touched">
+        Please provide title
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{invalid : form.get('author').invalid && form.get('author').touched}">
+      <label for="author">Author</label>
+      <input id="author" type="text" formControlName="author">
+      <div class="validation" *ngIf="form.get('author').invalid && form.get('author').touched">
+        Please provide author
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{invalid : form.get('content').invalid && form.get('content').touched}">
+      <label for="content">Content</label>
+      <quill-editor id="content" formControlName="content"></quill-editor>
+      <div class="validation" *ngIf="form.get('content').invalid && form.get('content').touched">
+        Please provide correct content {{form.get('content').errors.minlength.requiredLength}}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-dark btn-block" [disabled]="form.invalid">Change Post</button>
+  </form>
+</div>
+

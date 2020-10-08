@@ -10,6 +10,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {AuthGuard} from './shared/guards/auth.guard';
 import {QuillModule} from 'ngx-quill';
 import {SharedModule} from '../shared/shared.module';
+import { AlertComponent } from './shared/components/alert/alert.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import {SharedModule} from '../shared/shared.module';
     SharedModule
   ],
   exports: [RouterModule],
-  declarations: [AdminLayoutComponent, LoginPageComponent, DashboardPageComponent, CreatePageComponent, EditPageComponent],
+  declarations: [AdminLayoutComponent, LoginPageComponent, DashboardPageComponent, CreatePageComponent, EditPageComponent, AlertComponent],
   providers: [AuthGuard]
 })
 

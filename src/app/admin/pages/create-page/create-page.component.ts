@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Post} from '../../../shared/models/post.model';
 import {HttpService} from '../../../shared/services/http.service';
 import {Router} from '@angular/router';
+import {AlertService} from '../../../shared/services/alert.service';
 
 @Component({
   selector: 'app-create-page',
@@ -13,7 +14,7 @@ export class CreatePageComponent implements OnInit {
   form: FormGroup;
   post: Post;
 
-  constructor(private httpSer: HttpService, private router: Router) {
+  constructor(private httpSer: HttpService, private router: Router, private alertSer: AlertService) {
   }
 
   ngOnInit() {
@@ -37,6 +38,7 @@ export class CreatePageComponent implements OnInit {
     this.httpSer.addPost(this.post).subscribe(() => {
       this.router.navigate(['/admin', 'dashboard']);
       this.form.reset();
+      this.alertSer.success('Post created')
     });
   }
 }

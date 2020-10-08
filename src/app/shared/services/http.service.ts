@@ -27,12 +27,21 @@ export class HttpService {
       );
   }
 
-  getById() {
-
+  getById(id: string) {
+    return this.http.get(`${environment.DB_URL}/posts/${id}.json`)
+      .pipe(
+        map((post: Post) => {
+          return {
+            ...post,
+            id,
+            date: new Date(post.date)
+          };
+        })
+      );
   }
 
-  changePost() {
-
+  changePost(post: Post) {
+    return this.http.patch(`${environment.DB_URL}/posts/${post.id}.json`, post);
   }
 
   addPost(post: Post): Observable<Post> {
@@ -49,7 +58,7 @@ export class HttpService {
   }
 
   deletePost(id: string) {
-   return this.http.delete(`${environment.DB_URL}/posts/${id}.json`);
+    return this.http.delete(`${environment.DB_URL}/posts/${id}.json`);
   }
 
 }

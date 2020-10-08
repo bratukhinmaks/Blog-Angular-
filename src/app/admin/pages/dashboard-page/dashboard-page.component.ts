@@ -3,6 +3,7 @@ import {HttpInterceptor} from '@angular/common/http';
 import {HttpService} from '../../../shared/services/http.service';
 import {Post} from '../../../shared/models/post.model';
 import {Observable} from 'rxjs';
+import {AlertService} from '../../../shared/services/alert.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -13,7 +14,7 @@ export class DashboardPageComponent implements OnInit {
   posts: Post[];
   filter: string;
 
-  constructor(private http: HttpService) {
+  constructor(private http: HttpService,private aSer: AlertService) {
   }
 
   ngOnInit() {
@@ -25,6 +26,7 @@ export class DashboardPageComponent implements OnInit {
   deleteItem(id: string) {
     this.http.deletePost(id).subscribe(() => {
       this.posts = this.posts.filter(post => post.id !== id);
+      this.aSer.danger('Post has been deleted')
     });
   }
 }
