@@ -1,5 +1,8 @@
 <div class="container">
   <h1>Admin Panel</h1>
+  <div class="alert alert-danger" *ngIf="authSer.error$ | async as error">
+    {{error}}
+  </div>
   <form [formGroup]="form" (ngSubmit)="submit()" >
     <div class="form-group" [ngClass]="{invalid : form.get('name').invalid && form.get('name').touched}">
       <label for="name">Email</label>
@@ -12,7 +15,7 @@
       <label for="password">Password</label>
       <input id="password" type="password" formControlName="password">
       <div class="validation" *ngIf="form.get('password').invalid && form.get('password').touched">
-        Please provide correct password {{form.get('password').errors.minLength}}
+        Please provide correct password {{form.get('password').errors.minlength.requiredLength}}
       </div>
     </div>
     <button type="submit" class="btn btn-dark btn-block" [disabled]="form.invalid"> Submit</button>
