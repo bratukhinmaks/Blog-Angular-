@@ -17,7 +17,7 @@
     <td>{{idx+1}}</td>
     <td>{{post.author}}</td>
     <td>{{post.title}}</td>
-    <td>{{post.date | date:'MM/dd/yyyy'}}</td>
+    <td>{{post.date | date:'MM/dd/yyyy':null:'ru'}}</td>
     <td>
       <button (click)="deleteItem(post.id)" class="btn btn-danger btn-block">Delete</button>
       <button class="btn btn-success btn-block" [routerLink]="['/admin','post',post.id,'edit']">Edit</button>

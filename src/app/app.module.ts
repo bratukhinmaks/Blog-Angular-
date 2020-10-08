@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser'
-import {NgModule, Provider} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component'
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -14,11 +13,13 @@ import {PostComponent} from './shared/components/post/post.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {QuillModule} from 'ngx-quill';
 import { AuthIntersaptor} from './shared/interceptors/auth.interceptore';
-import {SortPipe} from './shared/pipes/sort.pipe';
 import {SharedModule} from './shared/shared.module';
+import {registerLocaleData} from '@angular/common';
+import ruLocale from '@angular/common/locales/ru';
 
 
 
+registerLocaleData(ruLocale, 'ru')
 
 @NgModule({
   declarations: [
