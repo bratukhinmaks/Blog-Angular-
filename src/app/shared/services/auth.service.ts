@@ -21,7 +21,7 @@ export class AuthService {
     return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.API_KEY}`, user)
       .pipe(
         tap(this.setToken),
-        catchError(this.handleErrore.bind(this))
+         catchError(this.handleErrore.bind(this))
       );
   }
 

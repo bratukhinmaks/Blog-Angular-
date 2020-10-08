@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser'
-import {NgModule} from '@angular/core'
+import {NgModule, Provider} from '@angular/core';
 import {AppComponent} from './app.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -11,7 +11,13 @@ import {HomePageComponent} from './pages/home-page/home-page.component';
 import {PostPageComponent} from './pages/post-page/post-page.component';
 import {RoutingModule} from './routing.module';
 import {PostComponent} from './shared/components/post/post.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {QuillModule} from 'ngx-quill';
+import { AuthIntersaptor} from './shared/interceptors/auth.interceptore';
+import {SortPipe} from './shared/pipes/sort.pipe';
+import {SharedModule} from './shared/shared.module';
+
+
 
 
 @NgModule({
@@ -20,18 +26,24 @@ import {HttpClientModule} from '@angular/common/http';
     MainLayoutComponent,
     HomePageComponent,
     PostPageComponent,
-    PostComponent
+    PostComponent,
   ],
   imports: [
+    SharedModule,
     BrowserModule,
-    FormsModule,
     HttpClientModule,
     RoutingModule,
-    ReactiveFormsModule,
+    QuillModule.forRoot(),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [   {
+    provide: HTTP_INTERCEPTORS,
+    multi: true,
+    useClass: AuthIntersaptor
+  }],
+  exports: [
+  ],
   entryComponents: [],
   bootstrap: [AppComponent]
 })

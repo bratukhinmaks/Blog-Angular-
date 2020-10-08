@@ -1,1 +1,27 @@
-<p>dashboard-page works!</p>
+<div class="form-group">
+  <label for="search">Search</label>
+  <input id="search" type="text" [(ngModel)]="filter">
+</div>
+<table>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Author</th>
+    <th>Title</th>
+    <th>Date</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr  *ngFor="let post of posts | sort:filter,let idx = index">
+    <td>{{idx+1}}</td>
+    <td>{{post.author}}</td>
+    <td>{{post.title}}</td>
+    <td>{{post.date | date:'MM/dd/yyyy'}}</td>
+    <td>
+      <button (click)="deleteItem(post.id)" class="btn btn-danger btn-block">Delete</button>
+      <button class="btn btn-success btn-block" [routerLink]="['/admin','post',post.id,'edit']">Edit</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -8,10 +8,13 @@ import {CreatePageComponent} from './pages/create-page/create-page.component';
 import {EditPageComponent} from './pages/edit-page/edit-page.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AuthGuard} from './shared/guards/auth.guard';
+import {QuillModule} from 'ngx-quill';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    QuillModule.forRoot(),
     RouterModule.forChild([
         {
           path: '', component: AdminLayoutComponent, children: [
@@ -25,7 +28,7 @@ import {AuthGuard} from './shared/guards/auth.guard';
         }
       ]
     ),
-    ReactiveFormsModule
+    SharedModule
   ],
   exports: [RouterModule],
   declarations: [AdminLayoutComponent, LoginPageComponent, DashboardPageComponent, CreatePageComponent, EditPageComponent],
